@@ -1,1 +1,22 @@
 <h1>Insert the form to create a new instance of your model.</h1>
+
+<h2>Sign up to Fwitter</h2>
+
+<form action="/signup" method="POST">
+    <label>Username: <input type="text" name="username" placeholder="fwitter_user"></label><br>
+    <label>Email: <input type="email" name="email" placeholder="user@fwitter.com"></label><br>
+    <label>Password: <input type="password" name="password" placeholder="********"></label><br>
+
+
+    <label>First name: <input type="text" name="first_name" placeholder="John"></label><br>
+    <label>Surname: <input type="text" name="last_name" placeholder="Smith"></label><br>
+    <label>Email address: <input type="email" name="email" placeholder="johnsmith@email.com"></label><br>
+    <label>Password: <input type="password" name="password_digest" placeholder="********"></label><br>
+    <label>Placeholder: <input type="text" name="developer" placeholder=""></label><br>
+    <label>Company Name: <input type="text" name="company" placeholder=""></label><br>
+    <label>Company Website: <input type="text" name="website" placeholder=""></label><br>
+
+
+
+    <input type="submit" value="Sign Up">
+</form>

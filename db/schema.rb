@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_07_175049) do
+ActiveRecord::Schema.define(version: 2020_12_07_211027) do
 
   create_table "developments", force: :cascade do |t|
     t.string "title"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_12_07_175049) do
     t.string "password_digest"
     t.boolean "developer"
     t.string "website"
+    t.string "company"
   end
 
 end

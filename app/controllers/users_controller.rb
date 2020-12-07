@@ -1,6 +1,27 @@
 class UsersController < ApplicationController
 
   # Sign up - log out
+  get "/users/signup" do
+    redirect_if_logged_in
+    erb :"users/new.html"
+  end
+
+  post "/users/signup" do
+    redirect_if_logged_in
+
+    if !!User.find_by_email(params[:email]) || !!User.find_by_username(params[:username])
+      redirect "/signup"
+    end
+    
+    user = User.new(params)
+    if user.save
+      session[:user_id] = user.id
+      redirect "/tweets"
+    else
+      redirect "/signup"
+    end
+  end
+
   get "/users/logout" do
     if logged_in?
       session.destroy
@@ -41,5 +62,12 @@ class UsersController < ApplicationController
   # DELETE: /users/5/delete
   delete "/users/:id/delete" do
     redirect "/users"
+  end
+
+  private
+  def redirect_if_logged_in
+    if logged_in?
+      redirect "/"
+    end
   end
 end
