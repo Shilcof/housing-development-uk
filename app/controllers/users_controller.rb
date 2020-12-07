@@ -18,6 +18,23 @@ class UsersController < ApplicationController
     end
   end
 
+  get "/users/login" do
+    redirect_if_logged_in
+    erb :"users/login.html"
+  end
+
+  post "/users/login" do
+    redirect_if_logged_in
+
+    user = User.find_by_email(params[:email])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect "/"
+    else
+      redirect "/users/login"
+    end
+  end
+
   get "/users/logout" do
     if logged_in?
       session.destroy
