@@ -3,7 +3,7 @@ class DevelopmentsController < ApplicationController
   before "/developments*" do
     redirect_if_not_logged_in
   end
-  
+
   # GET: /developments
   get "/developments" do
     erb :"/developments/index.html"
@@ -19,24 +19,26 @@ class DevelopmentsController < ApplicationController
     redirect "/developments"
   end
 
-  # GET: /developments/5
   get "/developments/:slug" do
     @development = Development.find_by_slug(params[:slug])
     erb :"/developments/show.html"
   end
 
   # GET: /developments/5/edit
-  get "/developments/:id/edit" do
+  get "/developments/:slug/edit" do
+    @development = Development.find_by_slug(params[:slug])
     erb :"/developments/edit.html"
   end
 
   # PATCH: /developments/5
-  patch "/developments/:id" do
+  patch "/developments/:slug" do
+    @development = Development.find_by_slug(params[:slug])
     redirect "/developments/:id"
   end
 
   # DELETE: /developments/5/delete
-  delete "/developments/:id/delete" do
+  delete "/developments/:slug/delete" do
+    @development = Development.find_by_slug(params[:slug])
     redirect "/developments"
   end
 end
