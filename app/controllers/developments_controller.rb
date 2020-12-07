@@ -1,5 +1,9 @@
 class DevelopmentsController < ApplicationController
 
+  before "/developments*" do
+    redirect_if_not_logged_in
+  end
+  
   # GET: /developments
   get "/developments" do
     erb :"/developments/index.html"
@@ -16,7 +20,8 @@ class DevelopmentsController < ApplicationController
   end
 
   # GET: /developments/5
-  get "/developments/:id" do
+  get "/developments/:slug" do
+    @development = Development.find_by_slug(params[:slug])
     erb :"/developments/show.html"
   end
 
