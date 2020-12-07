@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
-  
+
+  # Sign up - log out
+  get "/users/logout" do
+    if logged_in?
+      session.destroy
+    end
+      redirect to '/'
+  end
+
   # GET: /users
   get "/users" do
     erb :"/users/index.html"
