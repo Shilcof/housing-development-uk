@@ -5,6 +5,14 @@ class Development < ActiveRecord::Base
     belongs_to :developer, class_name: "User"
 
     def summary
-        content[0,50] + "..."
+        content.size > 49 ? content[0,50] +  "..." : content
+    end
+
+    def slug
+        title.downcase.gsub(" ","-") + id.to_s
+    end
+
+    def self.find_by_slug(slug)
+        all.find{|a| a.slug == slug}
     end
 end

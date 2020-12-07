@@ -1,7 +1,11 @@
 <section class="jumbotron jumbotron-fluid text-center">
   <div class="container">
     <h1>Welcome to Housing Development UK.</h1>
-    <p class="lead text-muted">To view the latest developments and leave comments, please sign up or log in.</p>
+    <% if logged_in? %>
+      <p class="lead text-muted">Here are the latest developments. Click on them to find out more.</p>
+    <% else %>
+      <p class="lead text-muted">To view the latest developments and leave comments, please sign up or log in.</p>
+    <% end %>
   </div>
 </section>
 
@@ -15,10 +19,12 @@
           <!--
           <img class="card-img-top rounded" src="{{ job.image.url }}" />
           -->
-          <div class="card-body">
-            <h2 class="card-heading"><%= development.title %></h2>
-            <p class="card-text"><%= development.summary %></p>
-          </div>
+          <a class="text-dark card-link" href="/developments/<%= development.slug %>">
+            <div class="card-body">
+              <h2 class="card-heading"><%= development.title %></h2>
+              <p class="card-text"><%= development.summary %></p>
+            </div>
+          </a>
         </div>
       <% end %>
 
