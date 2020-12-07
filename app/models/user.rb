@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
 
     has_many :developments, foreign_key: "developer_id"
 
+    def full_name
+        [first_name, last_name].join(" ")
+    end
 end
