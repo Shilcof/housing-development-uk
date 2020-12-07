@@ -7,19 +7,14 @@ class UsersController < ApplicationController
   end
 
   post "/users/signup" do
-    binding.pry
     redirect_if_logged_in
-
-    if !!User.find_by_email(params[:email]) || !!User.find_by_username(params[:username])
-      redirect "/signup"
-    end
     
     user = User.new(params)
     if user.save
       session[:user_id] = user.id
-      redirect "/tweets"
+      redirect "/"
     else
-      redirect "/signup"
+      redirect "/users/signup"
     end
   end
 
