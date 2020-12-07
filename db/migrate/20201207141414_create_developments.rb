@@ -1,10 +1,8 @@
-class CreateDevelopments < ActiveRecord::Migration
+class CreateDevelopments < ActiveRecord::Migration[6.0]
   def change
     create_table :developments do |t|
       t.string :title
       t.string :content
-
-      t.timestamps null: false
     end
   end
 end
