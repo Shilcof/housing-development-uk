@@ -17,7 +17,6 @@ class DevelopmentsController < ApplicationController
 
   # GET: /developments/5
   get "/developments/:id" do
-    @development = Development.find_by(params)
     erb :"/developments/show.html"
   end
 
