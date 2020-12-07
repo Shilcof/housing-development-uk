@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   post "/users/signup" do
+    binding.pry
     redirect_if_logged_in
 
     if !!User.find_by_email(params[:email]) || !!User.find_by_username(params[:username])
