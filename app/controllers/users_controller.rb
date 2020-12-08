@@ -10,7 +10,6 @@ class UsersController < ApplicationController
 
   post "/users/signup" do
     redirect_if_logged_in
-
     user = User.new(params)
     if user.save
       session[:user_id] = user.id
@@ -28,7 +27,6 @@ class UsersController < ApplicationController
 
   post "/users/login" do
     redirect_if_logged_in
-
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
@@ -48,8 +46,11 @@ class UsersController < ApplicationController
 
   get "/users/:slug" do
     redirect_if_not_logged_in
-    @developer = User.find_by_slug(params[:slug])
-    erb :"/users/show.html"
+    if @developer = User.find_by_slug(params[:slug])
+      erb :"/users/show.html"
+    else
+      erb :error
+    end
   end
 
   private
