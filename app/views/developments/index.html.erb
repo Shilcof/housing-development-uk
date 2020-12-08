@@ -18,7 +18,8 @@
           -->
           <a class="text-dark card-link" href="/developments/<%= development.slug %>">
             <div class="card-body">
-              <h2 class="card-heading"><%= development.title %></h2>
+              <h4 class="card-heading"><%= development.title %></h4>
+              <h5 class="card-title text-muted"><%= development.developer.company %></h5>
               <p class="card-text"><%= development.summary %></p>
             </div>
           </a>
