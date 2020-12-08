@@ -4,6 +4,7 @@
         <div class="col-md-6 px-0">
             <h1 class="display-8 font-italic">Viewing developments for <%= @developer.company %>.</h1>
             <% if current_developer? %>
+                <p class="lead my-3">Click on a development to edit or delete it.</p>
                 <br/>
                 <form method="GET" action="/developments/new">
                     <button type="submit" class="btn btn-primary centre">Add a new development.</button>
@@ -27,21 +28,6 @@
                         <div class="card-body">
                             <h2 class="card-heading"><%= development.title %></h2>
                             <p class="card-text"><%= development.summary %></p>
-                            <% if current_developer? %>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <form method="GET" action="/developments/<%= development.slug %>/edit">
-                                            <button type="submit" class="btn btn-primary form-control-sm">Edit development.</button>
-                                        </form>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <form method="POST" action="/developments/<%= development.slug %>">
-                                            <input type=hidden name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-primary form-control-sm">Delete development.</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            <% end %>
                         </div>
                     </a>
                 </div>
