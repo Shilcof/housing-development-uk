@@ -18,7 +18,7 @@
 <div class="album pt-4 bg-white">
     <div class="container">
         <div class="card-deck">
-            <% @developer.developments.each do |development| %>
+            <% @developer.developments.reverse.each do |development| %>
                 <div class="card mb-4 bg-light shadow-sm" style="min-width: 18rem;">
                     <!--
                     <img class="card-img-top rounded" src="{{ job.image.url }}" />

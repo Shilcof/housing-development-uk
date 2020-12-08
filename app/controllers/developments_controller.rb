@@ -4,11 +4,11 @@ class DevelopmentsController < ApplicationController
   use Rack::Flash
 
   before "/developments*" do
-    @developments = Development.all
     redirect_if_not_logged_in
   end
 
   get "/developments" do
+    @developments = Development.all
     erb :"/developments/index.html"
   end
 
