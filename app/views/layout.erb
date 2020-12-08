@@ -18,6 +18,9 @@
           <div class="navbar-nav ml-auto">
 
             <% if logged_in? %>
+              <% if current_user.developer %>
+                <a class="nav-item nav-link" href="/users/show"><%= current_user.company %></a>
+              <% end %>
               <a class="nav-item nav-link" href="/users/logout">Log out</a>
             <% else %>
               <a class="nav-item nav-link" href="/users/login">Log in</a>
