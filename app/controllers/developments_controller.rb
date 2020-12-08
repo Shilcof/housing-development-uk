@@ -9,13 +9,12 @@ class DevelopmentsController < ApplicationController
     erb :"/developments/index.html"
   end
 
-  # GET: /developments/new
   get "/developments/new" do
     erb :"/developments/new.html"
   end
 
-  # POST: /developments
   post "/developments" do
+    binding.pry
     redirect "/developments"
   end
 
