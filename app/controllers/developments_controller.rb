@@ -8,7 +8,7 @@ class DevelopmentsController < ApplicationController
   end
 
   get "/developments" do
-    @developments = Development.all
+    @developments = Development.all.includes(:developer)
     erb :"/developments/index.html"
   end
 

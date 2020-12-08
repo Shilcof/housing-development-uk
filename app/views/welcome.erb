@@ -16,8 +16,9 @@
           <img class="card-img-top rounded" src="{{ job.image.url }}" />
           -->
           <div class="card-body">
-            <h2 class="card-heading"><%= development.title %></h2>
-            <p class="card-text"><%= development.summary %></p>
+              <h4 class="card-heading"><%= development.title %></h4>
+              <h5 class="card-title text-muted"><%= development.developer.company %></h5>
+              <p class="card-text"><%= development.summary %></p>
           </div>
         </div>
       <% end %>
