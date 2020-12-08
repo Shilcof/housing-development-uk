@@ -4,7 +4,7 @@ class DevelopmentsController < ApplicationController
     redirect_if_not_logged_in
   end
 
-  # GET: /developments
+  # GET: /developments ---------------------------
   get "/developments" do
     erb :"/developments/index.html"
   end
@@ -38,7 +38,6 @@ class DevelopmentsController < ApplicationController
     erb :"/developments/edit.html"
   end
 
-  # PATCH: /developments/5
   patch "/developments/:slug" do
     redirect_if_not_developer
     @development = Development.find_by_slug(params[:slug])
@@ -51,10 +50,13 @@ class DevelopmentsController < ApplicationController
     end
   end
 
-  # DELETE: /developments/5/delete
-  delete "/developments/:slug/delete" do
+  delete "/developments/:slug" do
+    redirect_if_not_developer
     @development = Development.find_by_slug(params[:slug])
-    redirect "/developments"
+    @developer = @development.developer
+    redirect_if_wrong_developer(@developer)
+    @development.destroy
+    redirect "/users/#{ current_user.slug }"
   end
 
   private
