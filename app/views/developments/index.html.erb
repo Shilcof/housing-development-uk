@@ -1,1 +1,29 @@
-<h1>This is the Model's index page.</h1>
+<br/>
+<div class="container">
+    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+            <h1 class="display-8 font-italic">Currently viewing the latest developments.</h1> 
+            <p>Click on them to find out more.</p>
+        </div>
+    </div>
+</div>
+
+<div class="album pt-4 bg-white">
+  <div class="container">
+    <div class="card-deck">
+      <% @developments.each do |development| %>
+        <div class="card mb-4 bg-light shadow-sm" style="min-width: 18rem;">
+          <!--
+          <img class="card-img-top rounded" src="{{ job.image.url }}" />
+          -->
+          <a class="text-dark card-link" href="/developments/<%= development.slug %>">
+            <div class="card-body">
+              <h2 class="card-heading"><%= development.title %></h2>
+              <p class="card-text"><%= development.summary %></p>
+            </div>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,10 @@
 class DevelopmentsController < ApplicationController
 
   before "/developments*" do
+    @developments = Development.all
     redirect_if_not_logged_in
   end
 
-  # GET: /developments ---------------------------
   get "/developments" do
     erb :"/developments/index.html"
   end
