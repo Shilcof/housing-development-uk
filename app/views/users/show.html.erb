@@ -2,8 +2,15 @@
 <div class="container">
     <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
-            <h1 class="display-8 font-italic">Viewing developments for <%= @current_user.company %>.</h1>
-            <p class="lead my-3">To find out more information about the company, click <a href="<%= @current_user.website %>%">here<a>.</p>
+            <h1 class="display-8 font-italic">Viewing developments for <%= @developer.company %>.</h1>
+            <% if current_developer? %>
+                <br/>
+                <form method="POST" action="/users/login">
+                    <button type="submit" class="btn btn-primary centre">Add a new development.</button>
+                </form>
+            <% else %>
+                <p class="lead my-3">To find out more information about the company, click <a href="<%= @developer.website %>%">here<a>.</p>
+            <% end %>
         </div>
     </div>
 </div>
@@ -11,7 +18,7 @@
 <div class="album pt-4 bg-white">
     <div class="container">
         <div class="card-deck">
-            <% @current_user.developments.each do |development| %>
+            <% @developer.developments.each do |development| %>
                 <div class="card mb-4 bg-light shadow-sm" style="min-width: 18rem;">
                     <!--
                     <img class="card-img-top rounded" src="{{ job.image.url }}" />
@@ -22,6 +29,11 @@
                             <p class="card-text"><%= development.summary %></p>
                         </div>
                     </a>
+                    <% if current_developer? %>
+                        <form method="POST" action="/users/login">
+                            <button type="submit" class="btn btn-primary centre">Add a new development.</button>
+                        </form>
+                    <% end %>
                 </div>
             <% end %>
         </div>

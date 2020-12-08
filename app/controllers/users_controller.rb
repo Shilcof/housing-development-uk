@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   get "/users/:slug" do
-    @current_user = User.find_by_slug(params[:slug])
+    @developer = User.find_by_slug(params[:slug])
     erb :"/users/show.html"
   end
 
@@ -82,5 +82,9 @@ class UsersController < ApplicationController
     if logged_in?
       redirect "/"
     end
+  end
+  
+  def current_developer?
+    current_user == @developer
   end
 end
