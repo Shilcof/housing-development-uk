@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
     validates :first_name, presence: true
     validates :last_name, presence: true
     validates :email, presence: true, uniqueness: true
+    validates :company, uniqueness: true
     validates_associated :developments
     has_secure_password
 
@@ -9,5 +10,13 @@ class User < ActiveRecord::Base
 
     def full_name
         [first_name, last_name].join(" ")
+    end
+
+    def slug
+        company.downcase.gsub(" ","-")
+    end
+
+    def self.find_by_slug(slug)
+        all.find{|a| a.slug == slug}
     end
 end
