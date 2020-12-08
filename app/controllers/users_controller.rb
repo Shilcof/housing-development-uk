@@ -11,14 +11,12 @@ class UsersController < ApplicationController
   post "/users/signup" do
     redirect_if_logged_in
 
-    params[:company] = params[:email] if params[:company] == ""
-    
     user = User.new(params)
     if user.save
       session[:user_id] = user.id
       redirect "/developments"
     else
-      flash[:message] = user.errors.full_messages.join(", ") + "."
+      flash[:message] = user.errors.full_messages.join(". ") + "."
       redirect "/users/signup"
     end
   end
