@@ -14,7 +14,7 @@
     <!--
     <img class="img-fluid rounded" src="" />
     -->
-    <p><%= @development.content %></p>
+    <p><%= @development.content.gsub("\r\n\r\n","<br><br>") %></p>
     <br/>
     <% if current_developer? %>
       <div class="form-row">

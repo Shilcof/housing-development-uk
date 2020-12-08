@@ -10,6 +10,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    if logged_in?
+      redirect "/developments"
+    end
     @developments = Development.all
     erb :welcome
   end
