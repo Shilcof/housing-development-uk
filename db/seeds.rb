@@ -12,6 +12,7 @@
     User.create(params)
 end
 
+#seed developers and their developments
 5.times do
     params = {}
     names = Faker::Name.unique.name.split
