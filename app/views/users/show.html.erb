@@ -5,7 +5,7 @@
             <h1 class="display-8 font-italic">Viewing developments for <%= @developer.company %>.</h1>
             <% if current_developer? %>
                 <br/>
-                <form method="POST" action="/users/login">
+                <form method="GET" action="/developments/new">
                     <button type="submit" class="btn btn-primary centre">Add a new development.</button>
                 </form>
             <% else %>
@@ -30,8 +30,12 @@
                         </div>
                     </a>
                     <% if current_developer? %>
-                        <form method="POST" action="/users/login">
-                            <button type="submit" class="btn btn-primary centre">Add a new development.</button>
+                        <form method="GET" action="/developments/<%= development.slug %>/eidt">
+                            <button type="submit" class="btn btn-primary centre">Edit development.</button>
+                        </form>
+                        <form method="POST" action="/developments/<%= development.slug %>">
+                            <input type=hidden name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-primary centre">Delete development.</button>
                         </form>
                     <% end %>
                 </div>
