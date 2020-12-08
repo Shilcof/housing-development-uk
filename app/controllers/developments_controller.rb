@@ -39,8 +39,15 @@ class DevelopmentsController < ApplicationController
 
   # PATCH: /developments/5
   patch "/developments/:slug" do
+    redirect_if_not_developer
     @development = Development.find_by_slug(params[:slug])
-    redirect "/developments/:id"
+    @developer = @development.developer
+    redirect_if_wrong_developer(@developer)
+    if @development.update(params[:development])
+      redirect "/developments/#{@development.slug}"
+    else
+      redirect "/developments/#{@development.slug}/edit"
+    end
   end
 
   # DELETE: /developments/5/delete

@@ -9,11 +9,11 @@
         <input type="hidden" name="_method" value="PATCH">
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title" name="title" value="<%= @development.title %>">
+            <input type="text" class="form-control" id="title" name="development[title]" value="<%= @development.title %>">
         </div>
         <div class="form-group">
             <label for="content">Content:</label>
-            <textarea class="form-control" id="content" rows="10" name="content"><%= @development.content %></textarea>
+            <textarea class="form-control" id="content" rows="10" name="development[content]"><%= @development.content %></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Update Development</button>
     </form>
