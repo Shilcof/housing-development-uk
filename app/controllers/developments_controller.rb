@@ -29,10 +29,11 @@ class DevelopmentsController < ApplicationController
     erb :"/developments/show.html"
   end
 
-  # GET: /developments/5/edit
   get "/developments/:slug/edit" do
     redirect_if_not_developer
     @development = Development.find_by_slug(params[:slug])
+    @developer = @development.developer
+    redirect_if_wrong_developer(@developer)
     erb :"/developments/edit.html"
   end
 
@@ -51,6 +52,12 @@ class DevelopmentsController < ApplicationController
   private
   def redirect_if_not_developer
     if !current_user.developer
+      redirect "/"
+    end
+  end
+
+  def redirect_if_wrong_developer(developer)
+    if current_user.developer != developer
       redirect "/"
     end
   end
