@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
     validates :first_name, presence: true
     validates :last_name, presence: true
     validates :email, presence: true, uniqueness: true
-    validates :company, uniqueness: true
+
+    validates :company, uniqueness: true, allow_blank: true
+
     validates_associated :developments
     has_secure_password
 

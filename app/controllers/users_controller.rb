@@ -18,8 +18,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/developments"
     else
-      flash[:message] = "Unsuccessful sign up. " + user.errors.full_messages.join(", ") + "."
-      binding.pry
+      flash[:message] = user.errors.full_messages.join(", ") + "."
       redirect "/users/signup"
     end
   end
