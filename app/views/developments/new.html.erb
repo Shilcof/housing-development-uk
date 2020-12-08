@@ -1,10 +1,22 @@
 <br/>
 <div class="container">
-    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-        <div class="col-md-6 px-0">
-            <h1 class="display-8 font-italic">New development for <%= current_user.company %>.</h1>
+    
+    <% if flash.has?(:message) %>
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-danger">
+            <div class="col-md-6 px-0">
+                <h1 class="display-8 font-italic">New development error.</h1>
+                <p class="lead my-3"><%= flash[:message] %></p>
+            </div>
         </div>
-    </div>
+    <% else %>
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+            <div class="col-md-6 px-0">
+                <h1 class="display-8 font-italic">New development for <%= current_user.company %>.</h1>
+            </div>
+        </div>
+    <% end %> 
+
+
     <form method="POST" action="/developments">
         <div class="form-group">
             <label for="title">Title:</label>

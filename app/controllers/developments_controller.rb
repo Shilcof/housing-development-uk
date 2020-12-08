@@ -1,4 +1,7 @@
+require "rack-flash"
+
 class DevelopmentsController < ApplicationController
+  use Rack::Flash
 
   before "/developments*" do
     @developments = Development.all
@@ -16,10 +19,11 @@ class DevelopmentsController < ApplicationController
 
   post "/developments" do
     redirect_if_not_developer
-    current_user.developments.build(params)
+    development = current_user.developments.build(params)
     if current_user.save
       redirect "/users/#{current_user.slug}"
     else
+      flash[:message] = development.errors.full_messages.join(". ") + "."
       redirect "/developments/new"
     end
   end
@@ -46,6 +50,7 @@ class DevelopmentsController < ApplicationController
     if @development.update(params[:development])
       redirect "/developments/#{@development.slug}"
     else
+      flash[:message] = current_user.errors.full_messages.join(". ") + "."
       redirect "/developments/#{@development.slug}/edit"
     end
   end
