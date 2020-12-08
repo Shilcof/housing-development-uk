@@ -5,7 +5,7 @@ class Development < ActiveRecord::Base
     belongs_to :developer, class_name: "User"
 
     def summary
-        content.size > 49 ? content[0,50] +  "..." : content
+        content.size > 299 ? content[0,300] +  "..." : content
     end
 
     def slug

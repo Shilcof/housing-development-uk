@@ -21,13 +21,13 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <form method="GET" action="/developments/<%= @development.slug %>/edit">
-            <button type="submit" class="btn btn-primary centre">Edit development.</button>
+            <button type="submit" class="btn btn-primary btn-block">Edit development.</button>
           </form>
         </div>
         <div class="form-group col-md-6">
           <form method="POST" action="/developments/<%= @development.slug %>">
             <input type=hidden name="_method" value="DELETE">
-            <button type="submit" class="btn btn-primary centre">Delete development.</button>
+            <button type="submit" class="btn btn-danger btn-block">Delete development.</button>
           </form>
         </div>
       </div>

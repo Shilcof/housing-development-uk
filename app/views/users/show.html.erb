@@ -5,7 +5,6 @@
             <h1 class="display-8 font-italic">Viewing developments for <%= @developer.company %>.</h1>
             <% if current_developer? %>
                 <p class="lead my-3">Click on a development to edit or delete it.</p>
-                <br/>
                 <form method="GET" action="/developments/new">
                     <button type="submit" class="btn btn-primary centre">Add a new development.</button>
                 </form>
