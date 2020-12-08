@@ -30,4 +30,8 @@ class ApplicationController < Sinatra::Base
       redirect "/"
     end
   end
+  
+  def current_developer?
+    current_user == @developer
+  end
 end

@@ -26,6 +26,7 @@ class DevelopmentsController < ApplicationController
 
   get "/developments/:slug" do
     @development = Development.find_by_slug(params[:slug])
+    @developer = @development.developer
     erb :"/developments/show.html"
   end
 
