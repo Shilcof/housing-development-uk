@@ -10,12 +10,18 @@ class DevelopmentsController < ApplicationController
   end
 
   get "/developments/new" do
+    redirect_if_not_developer
     erb :"/developments/new.html"
   end
 
   post "/developments" do
-    binding.pry
-    redirect "/developments"
+    redirect_if_not_developer
+    current_user.developments.build(params)
+    if current_user.save
+      redirect "/users/#{current_user.slug}"
+    else
+      redirect "/developments/new"
+    end
   end
 
   get "/developments/:slug" do
@@ -25,6 +31,7 @@ class DevelopmentsController < ApplicationController
 
   # GET: /developments/5/edit
   get "/developments/:slug/edit" do
+    redirect_if_not_developer
     @development = Development.find_by_slug(params[:slug])
     erb :"/developments/edit.html"
   end
