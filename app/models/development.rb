@@ -8,6 +8,10 @@ class Development < ActiveRecord::Base
         content.size > 149 ? content[0,150] +  "..." : content
     end
 
+    def html
+        content.gsub("\r\n\r\n","<br><br>")
+    end
+
     def slug
         title.downcase.gsub(" ","-") + id.to_s
     end
