@@ -1,1 +1,20 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<br/>
+<div class="container">
+    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+            <h1 class="display-8 font-italic">Edit development <%= @development.title %>.</h1>
+        </div>
+    </div>
+    <form method="POST" action="/developments/<%= @development.slug %>">
+        <input type="hidden" name="_method" value="PATCH">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" value="<%= @development.title %>">
+        </div>
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea class="form-control" id="content" rows="10" name="content"><%= @development.content %></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Development</button>
+    </form>
+</div>

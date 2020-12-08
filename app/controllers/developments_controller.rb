@@ -57,7 +57,7 @@ class DevelopmentsController < ApplicationController
   end
 
   def redirect_if_wrong_developer(developer)
-    if current_user.developer != developer
+    if current_user != developer
       redirect "/"
     end
   end
