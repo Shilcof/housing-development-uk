@@ -29,9 +29,12 @@ class DevelopmentsController < ApplicationController
   end
 
   get "/developments/:slug" do
-    @development = Development.find_by_slug(params[:slug])
-    @developer = @development.developer
-    erb :"/developments/show.html"
+    if @development = Development.find_by_slug(params[:slug])
+      @developer = @development.developer
+      erb :"/developments/show.html"
+    else
+      erb :error
+    end
   end
 
   get "/developments/:slug/edit" do
