@@ -50,8 +50,8 @@ class DevelopmentsController < ApplicationController
     if @development.update(params[:development])
       redirect "/developments/#{@development.slug}"
     else
-      flash[:message] = current_user.errors.full_messages.join(". ") + "."
-      redirect "/developments/#{@development.slug}/edit"
+      flash[:message] = @development.errors.full_messages.join(". ") + "."
+      redirect "/developments/#{params[:slug]}/edit"
     end
   end
 
