@@ -28,15 +28,16 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
-        </div>
+        </div> 
         <div class="form-group">
-            <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="developer" name="developer">
-            <label class="form-check-label" for="developer">
-                I am a developer.
-            </label>
+            <div class="form-check"><!-- data-toggle="collapse" data_target=".collapse" role="button" aria-expanded="true" aria-controls="developer_attributes"> -->
+                <input class="form-check-input" type="checkbox" id="developer" name="developer">
+                <label class="form-check-label" for="developer">
+                    I am a developer.
+                </label>
             </div>
         </div>
+        <!-- <div class="collapse" id="developer_attributes"> -->
         <div class="form-group">
             <label for="company">Company name:</label>
             <input type="text" class="form-control" id="company" name="company" placeholder="Blogg's Development">
@@ -45,6 +46,7 @@
             <label for="website">Company Website URL:</label>
             <input type="text" class="form-control" id="website" name="website" placeholder="bloggsdev.co.uk">
         </div>
+        <!-- </div> -->
         <button type="submit" class="btn btn-primary">Sign up</button>
     </form>
 </div>
