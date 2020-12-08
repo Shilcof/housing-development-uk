@@ -40,4 +40,11 @@ class DevelopmentsController < ApplicationController
     @development = Development.find_by_slug(params[:slug])
     redirect "/developments"
   end
+
+  private
+  def redirect_if_not_developer
+    if !current_user.developer
+      redirect "/"
+    end
+  end
 end
