@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     end
 
     def slug
-        company.downcase.gsub(" ","-")
+        company ? company.downcase.gsub(" ","-") : ""
     end
 
     def self.find_by_slug(slug)
