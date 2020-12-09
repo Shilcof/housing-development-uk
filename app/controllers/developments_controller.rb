@@ -30,7 +30,7 @@ class DevelopmentsController < ApplicationController
   get "/developments/:slug" do
     if @development = Development.find_by_slug(params[:slug])
       @developer = @development.developer
-      @comments = @development.comments
+      @comments = @development.comments.includes(:user)
       @current_uri = request.env['PATH_INFO']
       erb :"/developments/show.html"
     else

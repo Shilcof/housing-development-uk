@@ -10,20 +10,32 @@
 
     <div class="row">
         <div class="col-md-8 blog-main">
+            
             <% @comments.each do |comment| %>
-                <div class="row mb-2">
-                    <div class="col-md-12">
-                        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <h3 class="mb-0"><%= comment.user.full_name %></h3>
-                                <a href="/developments/<%= comment.development.slug %>" class="stretched-link"><%= comment.development.title %></a>
-                                <!-- <div class="mb-1 text-muted">{{ blog.publish_date_nice }}</div> -->
-                                <p class="card-text mb-auto"><%= comment.body %></p>
-                            </div>
-                        </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="text-dark card-link" href="/developments/<%= comment.development.slug %>"><h5><%= comment.development.title %></h5></a>
+                    </div>
+                    <div class="card-body">
+                        <% if comment.rating %>
+                            <h5 class="card-title">Rating: <%= comment.rating %></h5>
+                        <% end %>
+                        <p class="card-text"><%= comment.body %></p>
+                        <% if comment.user == current_user %>
+                            <form method="POST" action="/comments/<%= comment.id %>">
+                                <input type=hidden name="_method" value="DELETE">
+                                <input type="hidden" name="route" value="<%= @current_uri %>">
+                                <button type="submit" class="btn btn-danger">Delete comment.</button>
+                            </form>
+                        <% end %>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted"><%= comment.posted_when %></small>
                     </div>
                 </div>
+                <br>
             <% end %>
+
         </div>
         <aside class="col-md-4 blog-sidebar">
             <div class="p-4 mb-3 bg-light rounded">

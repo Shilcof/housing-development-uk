@@ -90,6 +90,7 @@
 
     <% @comments.each do |comment| %>
       <div class="card">
+
         <div class="card-header">
           <h5><%= comment.user.full_name %></h5>
         </div>
@@ -105,6 +106,9 @@
               <button type="submit" class="btn btn-danger">Delete comment.</button>
             </form>
           <% end %>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"><%= comment.posted_when %></small>
         </div>
       </div>
       <br>

@@ -5,4 +5,8 @@ class Comment < ActiveRecord::Base
     validates :user_id, presence: true
     validates :development_id, presence: true
     validates :body, presence: true
+
+    def posted_when
+        "placeholder"
+    end
 end
