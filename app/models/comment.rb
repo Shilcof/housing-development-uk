@@ -8,30 +8,27 @@ class Comment < ActiveRecord::Base
 
     def ago_in_words
         return 'a very very long time ago' if created_at.year < 1800
-        secs = Time.now - created_at
-        return 'just now' if secs > -1 && secs < 1
-        return '' if secs <= -1
-        pair = ago_in_words_pair(secs)
-        ary = ago_in_words_singularize(pair)
-        ary.size == 0 ? '' : ary.join(' and ') << ' ago'
+        difference = Time.now - created_at
+        return 'just now' if difference > -1 && difference < 1
+        return '' if difference <= -1
+        words = difference_to_words(difference)
+        final = ago_in_words_singularize(words)
+        final.size == 0 ? '' : final + ' ago'
     end
     
     private
-    def ago_in_words_pair(secs)
+    def difference_to_words(difference)
         [[60, :seconds], [60, :minutes], [24, :hours], [100_000, :days]].map{ |count, name|
-            if secs > 0
-            secs, n = secs.divmod(count)
-            "#{n.to_i} #{name}"
+            if difference > 0
+                difference, n = difference.divmod(count)
+                "#{n.to_i} #{name}"
             end
-        }.compact.reverse[0..1]
+        }.compact.reverse[0]
     end
     
-    def ago_in_words_singularize(pair)
-        if pair.size == 1
-            pair.map! {|part| part[0, 2].to_i == 1 ? part.chomp('s') : part }
-        else
-            pair.map! {|part| part[0, 2].to_i == 1 ? part.chomp('s') : part[0, 2].to_i == 0 ? nil : part }
+    def ago_in_words_singularize(words)
+        if words.split(" ")[0] == "1"
+            words.chomp("s")
         end
-        pair.compact
     end
 end
