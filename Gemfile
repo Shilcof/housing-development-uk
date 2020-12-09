@@ -11,7 +11,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem 'tux'
-gem 'rack-flash3'
+gem 'sinatra-flash'
 gem 'dotenv'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 

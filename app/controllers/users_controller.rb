@@ -2,6 +2,7 @@
 class UsersController < ApplicationController
 
   get "/users/signup" do
+    binding.pry
     redirect_if_logged_in
     erb :"users/new.html"
   end

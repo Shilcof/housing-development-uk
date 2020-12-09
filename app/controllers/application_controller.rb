@@ -1,8 +1,7 @@
 require './config/environment'
-require "rack-flash"
 
 class ApplicationController < Sinatra::Base
-  use Rack::Flash
+  register Sinatra::Flash
 
   configure do
     enable :sessions
