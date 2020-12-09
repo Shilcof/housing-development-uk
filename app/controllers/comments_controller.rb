@@ -1,5 +1,9 @@
 class CommentsController < ApplicationController
 
+  before "/comments*" do
+    redirect_if_not_logged_in
+  end
+
   # GET: /comments
   get "/comments" do
     erb :"/comments/index.html"
@@ -10,11 +14,8 @@ class CommentsController < ApplicationController
     erb :"/comments/new.html"
   end
 
-  # POST: /comments
   post "/comments" do
-    if !params[:route] || current_user.developer
-      redirect "/"
-    end
+    redirect_if_developer_or_no_route
     comment = current_user.comments.build(params[:comment])
     if !current_user.save
       flash[:message] = comment.errors.full_messages.join(". ") + "."
@@ -37,8 +38,31 @@ class CommentsController < ApplicationController
     redirect "/comments/:id"
   end
 
-  # DELETE: /comments/5/delete
-  delete "/comments/:id/delete" do
-    redirect "/comments"
+  delete "/comments/:id" do
+    redirect_if_developer_or_no_route
+    @comment = Comment.find_by_id(params[:id])
+    if @comment.user == current_user
+      @comment.destroy
+    end
+    redirect "#{params[:route]}"
+  end
+
+  private
+  def redirect_if_not_developer
+    if !current_user.developer
+      redirect "/"
+    end
+  end
+
+  def redirect_if_wrong_developer(developer)
+    if current_user != developer
+      redirect "/"
+    end
+  end
+
+  def redirect_if_developer_or_no_route
+    if !params[:route] || current_user.developer
+      redirect "/"
+    end
   end
 end

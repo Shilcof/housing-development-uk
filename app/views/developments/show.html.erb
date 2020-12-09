@@ -93,7 +93,11 @@
           <% end %>
           <p class="card-text"><%= comment.body %></p>
           <% if comment.user == current_user %>
-            <a href="/comments/delete" class="btn btn-danger">Delete comment</a>
+            <form method="POST" action="/comments/<%= comment.id %>">
+              <input type=hidden name="_method" value="DELETE">
+              <input type="hidden" name="route" value="<%= @current_uri %>">
+              <button type="submit" class="btn btn-danger">Delete comment.</button>
+            </form>
           <% end %>
         </div>
       </div>
