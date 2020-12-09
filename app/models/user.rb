@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
 
     has_secure_password
 
-    has_many :developments, foreign_key: "developer_id"
-    has_many :comments
+    has_many :developments, foreign_key: "developer_id", dependent: :destroy
+    has_many :comments, dependent: :destroy
 
     def full_name
         [first_name, last_name].join(" ")
