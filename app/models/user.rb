@@ -6,14 +6,16 @@ class User < ActiveRecord::Base
     validates :company, presence: true, uniqueness: true, if: :developer?
     validates :website, presence: true, uniqueness: true, if: :developer?
 
-    validates_associated :developments
-    has_secure_password
-
-    has_many :developments, foreign_key: "developer_id"
-
     def developer?
         !!developer
     end
+
+    validates_associated :developments
+
+    has_secure_password
+
+    has_many :developments, foreign_key: "developer_id"
+    has_many :comments
 
     def full_name
         [first_name, last_name].join(" ")

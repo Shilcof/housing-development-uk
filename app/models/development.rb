@@ -3,6 +3,7 @@ class Development < ActiveRecord::Base
     validates :content, presence: true
 
     belongs_to :developer, class_name: "User"
+    has_many :comments
 
     def summary
         content.size > 149 ? content[0,150] +  "..." : content
