@@ -18,7 +18,7 @@
 
             <% if logged_in? %>
               <% if current_user.developer %>
-                <a class="nav-item nav-link" href="/users/<%= current_user.slug %>"><%= current_user.company %></a>
+                <a class="nav-item nav-link" href="/developers/<%= current_user.slug %>"><%= current_user.company %></a>
               <% end %>
               <a class="nav-item nav-link" href="/users/logout">Log out</a>
             <% else %>

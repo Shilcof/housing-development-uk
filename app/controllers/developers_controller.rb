@@ -1,8 +1,15 @@
 
 class DevelopersController < ApplicationController
 
-  get "/developers/:slug" do
+  before "/developers*" do
     redirect_if_not_logged_in
+  end
+
+  get "/developers" do
+    erb :"/developers/index.html"
+  end
+
+  get "/developers/:slug" do
     if params[:slug] != ""
       erb :error
     end
@@ -10,13 +17,6 @@ class DevelopersController < ApplicationController
       erb :"/developers/show.html"
     else
       erb :error
-    end
-  end
-
-  private
-  def redirect_if_logged_in
-    if logged_in?
-      redirect "/developments"
     end
   end
 end
