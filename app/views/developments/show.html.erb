@@ -17,6 +17,7 @@
     -->
     <p><%= @development.html %></p>
     <br/>
+
     <% if current_developer? %>
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -70,5 +71,33 @@
         </div>
       </form>
     <% end %>
+    <br>
+
+    <div class="card text-white bg-dark">
+      <div class="card-header">
+        <h5>User's feedback for this development.</h5>
+      </div>
+    </div>
+
+    <br>
+
+    <% @comments.each do |comment| %>
+      <div class="card">
+        <div class="card-header">
+          <h5><%= comment.user.full_name %></h5>
+        </div>
+        <div class="card-body">
+          <% if comment.rating %>
+            <h5 class="card-title">Rating: <%= comment.rating %></h5>
+          <% end %>
+          <p class="card-text"><%= comment.body %></p>
+          <% if comment.user == current_user %>
+            <a href="/comments/delete" class="btn btn-danger">Delete comment</a>
+          <% end %>
+        </div>
+      </div>
+      <br>
+    <% end %>
+
   </div>
 </main>
