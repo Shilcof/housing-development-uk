@@ -23,6 +23,10 @@ class Development < ActiveRecord::Base
     
     def average_rating
         @comments ||= comments
-        @comments.reduce(0){|sum,comment| comment.rating == "" ? sum : sum + comment.rating}/(@comments.select{|comment| comment.rating != ""}.size)
+        if @comments.select{|comment| comment.rating != ""}.size == 0
+            "Currently unrated"
+        else
+            @comments.reduce(0){|sum,comment| comment.rating == "" ? sum : sum + comment.rating}/(@comments.select{|comment| comment.rating != ""}.size)
+        end
     end
 end
