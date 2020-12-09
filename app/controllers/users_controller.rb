@@ -1,7 +1,5 @@
-require "rack-flash"
 
 class UsersController < ApplicationController
-  use Rack::Flash
 
   get "/users/signup" do
     redirect_if_logged_in

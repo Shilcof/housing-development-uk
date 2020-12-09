@@ -1,7 +1,6 @@
-require "rack-flash"
+
 
 class DevelopmentsController < ApplicationController
-  use Rack::Flash
 
   before "/developments*" do
     redirect_if_not_logged_in
