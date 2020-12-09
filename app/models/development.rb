@@ -20,4 +20,9 @@ class Development < ActiveRecord::Base
     def self.find_by_slug(slug)
         all.find{|a| a.slug == slug}
     end
+    
+    def average_rating
+        @comments ||= comments
+        @comments.reduce(0){|sum,comment| comment.rating == "" ? sum : sum + comment.rating}/(@comments.select{|comment| comment.rating != ""}.size)
+    end
 end
