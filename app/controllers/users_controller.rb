@@ -2,7 +2,6 @@
 class UsersController < ApplicationController
 
   get "/users/signup" do
-    binding.pry
     redirect_if_logged_in
     erb :"users/new.html"
   end
@@ -14,7 +13,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/developments"
     else
-      flash[:message] = user.errors.full_messages.join(". ") + "."
+      flash[:message] = user.errors.full_messages.join(". ").gsub("Company can't be blank. Company has already been taken.", "Company can't be blank.").gsub("Website can't be blank. Website has already been taken.", "Website can't be blank.") + "."
       redirect "/users/signup"
     end
   end
