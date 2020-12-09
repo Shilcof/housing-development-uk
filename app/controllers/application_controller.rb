@@ -20,11 +20,13 @@ class ApplicationController < Sinatra::Base
   end
 
   not_found do
+    @current_uri = request.env['PATH_INFO']
     status 404
     erb :error
   end
 
   error ActiveRecord::RecordNotFound do
+    @current_uri = request.env['PATH_INFO']
     status 404
     erb :error
   end
