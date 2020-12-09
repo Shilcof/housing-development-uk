@@ -1,1 +1,26 @@
-Placeholder for developers index page.
+<br/>
+<main role="main">
+  <div class="container">
+
+    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic">All developers</h1>
+            <p class="lead my-3">Click on a developer to view their developments.</p>
+        </div>
+    </div>
+
+    <% @developers.each do |developer| %>
+      <div class="card">
+        <div class="card-header">
+            <a class="text-dark card-link" href="/developers/<%= developer.slug %>"><h5><%= developer.company %></h5></a>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Number of developments: <%= developer.developments.size %></p>
+            <p class="card-text">Number of followers: </p>
+        </div>
+      </div>
+      <br>
+    <% end %>
+
+  </div>
+</main>
