@@ -12,8 +12,7 @@ class CommentsController < ApplicationController
 
   # POST: /comments
   post "/comments" do
-    binding.pry
-    redirect "/comments"
+    redirect "#{params[:route]}"
   end
 
   # GET: /comments/5
