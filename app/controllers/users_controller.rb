@@ -44,7 +44,10 @@ class UsersController < ApplicationController
 
   get "/users/:slug" do
     redirect_if_not_logged_in
-    if @developer = User.find_by_slug(params[:slug]) && params[:slug] != ""
+    if params[:slug] != ""
+      erb :error
+    end
+    if @developer = User.find_by_slug(params[:slug])
       erb :"/users/show.html"
     else
       erb :error
