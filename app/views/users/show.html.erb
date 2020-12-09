@@ -2,35 +2,36 @@
 <div class="container">
     <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
-            <h1 class="display-8 font-italic">Viewing developments for <%= @developer.company %>.</h1>
-            <% if current_developer? %>
-                <p class="lead my-3">Click on a development to edit or delete it.</p>
-                <form method="GET" action="/developments/new">
-                    <button type="submit" class="btn btn-primary centre">Add a new development.</button>
-                </form>
-            <% else %>
-                <p class="lead my-3">To find out more information about the company, click <a href="<%= @developer.website %>%">here<a>.</p>
-            <% end %>
+            <h1 class="display-8 font-italic"><%= @user.full_name %>.</h1>
+            <p class="lead my-3">You have made <%= @comments.count %> <%= @comments.count == 1 ? "comment" : "comments" %>.</p>
         </div>
     </div>
-</div>
 
-<div class="album pt-4 bg-white">
-    <div class="container">
-        <div class="card-deck">
-            <% @developer.developments.reverse.each do |development| %>
-                <div class="card mb-4 bg-light shadow-sm" style="min-width: 18rem;">
-                    <!--
-                    <img class="card-img-top rounded" src="{{ job.image.url }}" />
-                    -->
-                    <a class="text-dark card-link" href="/developments/<%= development.slug %>">
-                        <div class="card-body">
-                            <h4 class="card-heading"><%= development.title %></h4>
-                            <p class="card-text"><%= development.summary %></p>
+
+    <div class="row">
+        <div class="col-md-8 blog-main">
+            <% @comments.each do |comment| %>
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <h3 class="mb-0"><%= comment.user.full_name %></h3>
+                                <a href="/developments/<%= comment.development.slug %>" class="stretched-link"><%= comment.development.title %></a>
+                                <!-- <div class="mb-1 text-muted">{{ blog.publish_date_nice }}</div> -->
+                                <p class="card-text mb-auto"><%= comment.body %></p>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             <% end %>
         </div>
+        <aside class="col-md-4 blog-sidebar">
+            <div class="p-4 mb-3 bg-light rounded">
+                <h4 class="font-italic">Your followed developers:</h4>
+                <p class="mb-0">Placeholder.</p>
+            </div>
+        </aside>
     </div>
+
+
 </div>

@@ -42,12 +42,13 @@ class UsersController < ApplicationController
     redirect to '/'
   end
 
-  get "/users/:slug" do
+  get "/users/:id" do
     redirect_if_not_logged_in
-    if params[:slug] != ""
-      erb :error
-    end
-    if @developer = User.find_by_slug(params[:slug])
+    if @user = User.find_by_id(params[:id])
+      if @user.developer || @user != current_user
+        redirect "/"
+      end
+      @comments = @user.comments.includes(:user, :development)
       erb :"/users/show.html"
     else
       erb :error
