@@ -29,7 +29,7 @@ class DevelopmentsController < ApplicationController
   end
 
   get "/developments/:slug" do
-    if @development = Development.find_by_slug(params[:slug])
+    if @development = Development.find_by_slug(params[:slug]) && params[:slug] != ""
       @developer = @development.developer
       erb :"/developments/show.html"
     else
