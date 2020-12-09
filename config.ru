@@ -7,4 +7,5 @@ end
 use Rack::MethodOverride
 use DevelopmentsController
 use UsersController
+use CommentsController
 run ApplicationController
