@@ -12,6 +12,13 @@ class CommentsController < ApplicationController
 
   # POST: /comments
   post "/comments" do
+    if !params[:route] || current_user.developer
+      redirect "/"
+    end
+    comment = current_user.comments.build(params[:comment])
+    if !current_user.save
+      flash[:message] = comment.errors.full_messages.join(". ") + "."
+    end
     redirect "#{params[:route]}"
   end
 

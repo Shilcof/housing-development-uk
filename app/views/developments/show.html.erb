@@ -35,6 +35,7 @@
     <% if !current_user.developer %>
       <form class="card bg-secondary rounded " method="POST" action="/comments">
         <input type="hidden" name="route" value="<%= @current_uri %>">
+        <input type="hidden" name="comment[development_id]" value="<%= @development.id %>">
         <div class="card-body">
           <div class="form-group">
             <label for="body"><h5>What are your thoughts on this development?</h5></label>
