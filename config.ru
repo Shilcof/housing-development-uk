@@ -9,4 +9,5 @@ use DevelopmentsController
 use UsersController
 use DevelopersController
 use CommentsController
+use FollowerDevelopersController
 run ApplicationController
