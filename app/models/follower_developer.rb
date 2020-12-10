@@ -1,4 +1,4 @@
 class FollowerDeveloper < ActiveRecord::Base
-    belongs_to :follower, class: :user
-    belongs_to :developer, class: :user
+    belongs_to :follower, class_name: :user
+    belongs_to :developer, class_name: :user
 end
