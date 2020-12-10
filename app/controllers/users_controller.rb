@@ -57,6 +57,7 @@ class UsersController < ApplicationController
       redirect "/developers/#{current_user.slug}"
     end
     @comments = @user.comments.includes(:user, :development)
+    @followed_developers = @user.followed_developers
     erb :"/users/show.html"
   end
 
