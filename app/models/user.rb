@@ -14,12 +14,12 @@ class User < ActiveRecord::Base
 
     has_secure_password
 
-    has_many :developments, foreign_key: "developer_id", dependent: :destroy
+    has_many :developments, foreign_key: :developer_id, dependent: :destroy
     has_many :comments, dependent: :destroy
 
     # Aliasing to allow a user to follow many developers, and a developer to have many followers ----------------------------
-    has_many :follower_ids, class_name: :follower_developers, foreign_key: "follower_id", dependent: :destroy
-    has_many :following_developer_ids, class_name: :follower_developers, foreign_key: "developer_id", dependent: :destroy
+    has_many :follower_ids, class_name: :follower_developers, foreign_key: :follower_id, dependent: :destroy
+    has_many :following_developer_ids, class_name: :follower_developers, foreign_key: :developer_id, dependent: :destroy
 
     has_many :followers, through: :follower_ids
     has_many :developers, through: :following_developer_ids
