@@ -26,7 +26,7 @@ class Development < ActiveRecord::Base
         if @comments.select{|comment| comment.rating != ""}.size == 0
             "Currently unrated"
         else
-            @comments.reduce(0){|sum,comment| comment.rating == "" ? sum : sum + comment.rating}/(@comments.select{|comment| comment.rating != ""}.size)
+            (@comments.reduce(0){|sum,comment| comment.rating == "" ? sum : sum + comment.rating}/(@comments.select{|comment| comment.rating != ""}.size).to_f).round(2)
         end
     end
 end
