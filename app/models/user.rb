@@ -18,11 +18,11 @@ class User < ActiveRecord::Base
     has_many :comments, dependent: :destroy
 
     # Aliasing to allow a user to follow many developers, and a developer to have many followers ----------------------------
-    has_many :follower_ids, class_name: :follower_developers, foreign_key: :follower_id, dependent: :destroy
-    has_many :following_developer_ids, class_name: :follower_developers, foreign_key: :developer_id, dependent: :destroy
+    has_many :follower_associations, class_name: :FollowerDeveloper, foreign_key: :developer_id, dependent: :destroy
+    has_many :following_associations, class_name: :FollowerDeveloper, foreign_key: :follower_id, dependent: :destroy
 
-    has_many :followers, through: :follower_ids
-    has_many :developers, through: :following_developer_ids
+    has_many :followers, through: :follower_associations
+    has_many :followed_developers, through: :following_associations, source: :developer
     # -----------------------------------------------------------------------------------------------------------------------
 
     def full_name
