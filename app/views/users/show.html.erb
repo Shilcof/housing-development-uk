@@ -40,7 +40,11 @@
         <aside class="col-md-4 blog-sidebar">
             <div class="p-4 mb-3 bg-light rounded">
                 <h4 class="font-italic">Your followed developers:</h4>
-                <p class="mb-0">Placeholder.</p>
+                <ul class="mb-0">
+                <% @followed_developers.each do |developer| %>
+                    <li><a class="text-dark card-link" href="/developers/<%= developer.slug %>"><h6 class="mb-0"><%= developer.company %></h6></a></li>
+                <% end %>
+                </ul>
             </div>
         </aside>
     </div>
