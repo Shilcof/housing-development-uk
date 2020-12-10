@@ -6,7 +6,7 @@ class DevelopersController < ApplicationController
   end
 
   get "/developers" do
-    @developers = User.where(developer: true).includes(:developments) # :followers
+    @developers = User.where(developer: true).includes(:developments, :followers) 
     erb :"/developers/index.html"
   end
 
