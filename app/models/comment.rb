@@ -29,6 +29,8 @@ class Comment < ActiveRecord::Base
     def ago_in_words_singularize(words)
         if words.split(" ")[0] == "1"
             words.chomp("s")
+        else
+            words
         end
     end
 end
