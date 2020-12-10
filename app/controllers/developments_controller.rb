@@ -7,8 +7,8 @@ class DevelopmentsController < ApplicationController
   end
 
   get "/developments" do
-    if params[:search]
-      @developments = Development.where("title like ?", "%#{params[:search]}%").includes(:developer)
+    if @search = params[:search]
+      @developments = Development.where("title like ?", "%#{@search}%").includes(:developer)
     else
       @developments = Development.all.includes(:developer)
     end

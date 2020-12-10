@@ -19,8 +19,15 @@
         </div>
     </div>
   </form>
-</div>
 
+  <% if @developments.size == 0 %>
+    <div class="card">
+      <div class="card-body">
+        <h5>No developments found matching the search <%= @search %></h5>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <div class="album pt-4 bg-white">
     <div class="card-deck">
