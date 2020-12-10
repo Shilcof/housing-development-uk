@@ -7,7 +7,11 @@ class DevelopmentsController < ApplicationController
   end
 
   get "/developments" do
-    @developments = Development.all.includes(:developer)
+    if params[:search]
+      @developments = Development.where("title like ?", "%#{params[:search]}%")
+    else
+      @developments = Development.all.includes(:developer)
+    end
     erb :"/developments/index.html"
   end
 
