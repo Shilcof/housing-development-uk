@@ -92,7 +92,14 @@
       <div class="card">
 
         <div class="card-header">
-          <h5><%= comment.user.full_name %></h5>
+          <div class="row">
+            <div class="col-8">
+              <h5><%= comment.user.full_name %></h5>
+            </div>
+            <div class="col-4 text-right">
+              <small class="text-muted"><%= comment.ago_in_words %></small>
+            </div>
+          </div>
         </div>
         <div class="card-body">
           <% if comment.rating %>
@@ -106,9 +113,6 @@
               <button type="submit" class="btn btn-danger">Delete comment.</button>
             </form>
           <% end %>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted"><%= comment.ago_in_words %></small>
         </div>
       </div>
       <br>
