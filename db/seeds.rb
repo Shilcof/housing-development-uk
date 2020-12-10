@@ -39,7 +39,7 @@ end
     params[:last_name] = names[1]
     params[:developer] = true
 
-    company = Faker::Company.unique.bs
+    company = Faker::Company.unique.bs.capitalize
     slugged = company.split(" ").join("-").downcase
 
     params[:email] = slugged + "@email.com"
