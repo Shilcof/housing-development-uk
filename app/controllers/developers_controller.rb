@@ -15,6 +15,7 @@ class DevelopersController < ApplicationController
       erb :error
     end
     if @developer = User.find_by_slug(params[:slug])
+      @followers = @developer.followers
       erb :"/developers/show.html"
     else
       erb :error

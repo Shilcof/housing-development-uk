@@ -3,6 +3,7 @@
     <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
             <h1 class="display-8 font-italic">Viewing developments for <%= @developer.company %>.</h1>
+            <p class="lead my-3"><%= @followers.size %> follower<%= "s" unless @followers.size == 1%></p>
             <% if current_developer? %>
                 <p class="lead my-3">Click on a development to edit or delete it.</p>
                 <form method="GET" action="/developments/new">
@@ -20,9 +21,6 @@
         <div class="card-deck">
             <% @developer.developments.reverse.each do |development| %>
                 <div class="card mb-4 bg-light shadow-sm" style="min-width: 18rem;">
-                    <!--
-                    <img class="card-img-top rounded" src="{{ job.image.url }}" />
-                    -->
                     <a class="text-dark card-link" href="/developments/<%= development.slug %>">
                         <div class="card-body">
                             <h4 class="card-heading"><%= development.title %></h4>
