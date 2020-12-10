@@ -16,6 +16,22 @@
     </div>
 </div>
 
+<% if !current_developer? %>
+    <% if @followers.include?(current_user) %>
+        <div class="container">
+            <form method="get" action="/follower_developers/unfollow/<%= @developer.id %>">
+                <button type="submit" class="btn btn-primary btn-block disabled">Unfollow</button>
+            </form>
+        </div>
+    <% else %>
+        <div class="container">
+            <form method="get" action="/follower_developers/follow/<%= @developer.id %>">
+                <button type="submit" class="btn btn-primary btn-block">Follow</button>
+            </form>
+        </div>
+    <% end %>
+<% end %>
+
 <div class="album pt-4 bg-white">
     <div class="container">
         <div class="card-deck">
