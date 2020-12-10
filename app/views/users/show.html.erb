@@ -40,11 +40,15 @@
         <aside class="col-md-4 blog-sidebar">
             <div class="p-4 mb-3 bg-light rounded">
                 <h4 class="font-italic">Your followed developers:</h4>
-                <ul class="mb-0">
-                <% @followed_developers.each do |developer| %>
-                    <li><a class="text-dark card-link" href="/developers/<%= developer.slug %>"><h6 class="mb-0"><%= developer.company %></h6></a></li>
-                <% end %>
-                </ul>
+                    <% if @followed_developers.size == 0 %>
+                        <p>You do not currently follow any developers, explore All developers to find some to follow.</p>
+                    <% else %>
+                        <ul class="mb-0">
+                            <% @followed_developers.each do |developer| %>
+                                <li><a class="text-dark card-link" href="/developers/<%= developer.slug %>"><h6 class="mb-0"><%= developer.company %></h6></a></li>
+                            <% end %>
+                        </ul>
+                    <% end %>
             </div>
         </aside>
     </div>
