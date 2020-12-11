@@ -5,6 +5,8 @@ class Development < ActiveRecord::Base
     belongs_to :developer, class_name: "User"
     has_many :comments, dependent: :destroy
 
+    @@hashids = Hashids.new(ENV['SALT'], 8)
+
     def summary
         content.size > 149 ? content[0,150] +  "..." : content
     end
@@ -14,7 +16,7 @@ class Development < ActiveRecord::Base
     end
 
     def slug
-        title.downcase.gsub(" ","-") + id.to_s
+        title.downcase.gsub(" ","-") + "-" + @@hashids.encode(id)
     end
 
     def self.find_by_slug(slug)
