@@ -14,6 +14,7 @@ gem 'tux'
 gem 'sinatra-flash'
 gem 'dotenv'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'hashids'
 
 group :test do
   gem 'rspec'
