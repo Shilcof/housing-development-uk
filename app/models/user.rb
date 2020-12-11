@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
     validates :company, presence: true, uniqueness: true, if: :developer?
     validates :website, presence: true, uniqueness: true, if: :developer?
 
+    validates_each :first_name, :last_name, :email, :company, :website do |record, attr, value|
+        record.errors.add(attr, "must not contain \< or \>") if value.scan(/[<>]/).size > 0 
+    end
+
     def developer?
         !!developer
     end

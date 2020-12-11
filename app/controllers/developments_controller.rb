@@ -36,6 +36,7 @@ class DevelopmentsController < ApplicationController
       @developer = @development.developer
       @comments = @development.comments.includes(:user)
       @current_uri = request.env['PATH_INFO']
+      puts "marker"
       erb :"/developments/show.html"
     else
       erb :error

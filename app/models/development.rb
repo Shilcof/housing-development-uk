@@ -2,6 +2,10 @@ class Development < ActiveRecord::Base
     validates :title, presence: true
     validates :content, presence: true
 
+    validates_each :title, :content do |record, attr, value|
+        record.errors.add(attr, "must not contain \< or \>") if value.scan(/[<>]/).size > 0 
+    end
+
     belongs_to :developer, class_name: "User"
     has_many :comments, dependent: :destroy
 

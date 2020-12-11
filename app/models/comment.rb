@@ -6,6 +6,10 @@ class Comment < ActiveRecord::Base
     validates :development_id, presence: true
     validates :body, presence: true
 
+    validates_each :body do |record, attr, value|
+        record.errors.add(attr, "must not contain \< or \>") if value.scan(/[<>]/).size > 0 
+    end
+
     def ago_in_words
         return 'a very very long time ago' if created_at.year < 1800
         difference = Time.now - created_at

@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   post "/comments" do
     redirect_if_developer_or_no_route
     comment = current_user.comments.build(params[:comment])
-    if !current_user.save
+    if !comment.save
       flash[:message] = comment.errors.full_messages.join(". ") + "."
     end
     redirect "#{params[:route]}"
