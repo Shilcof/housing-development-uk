@@ -3,7 +3,7 @@ class Development < ActiveRecord::Base
     validates :content, presence: true
 
     validates_each :title, :content do |record, attr, value|
-        record.errors.add(attr, "must not contain \< or \>") if value.scan(/[<>]/).size > 0 
+        record.errors.add(attr, "must not contain \< or \>") if value && value.match(/[<>]/)
     end
 
     belongs_to :developer, class_name: "User"

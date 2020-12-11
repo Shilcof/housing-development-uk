@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
     validates :company, presence: true, uniqueness: true, if: :developer?
     validates :website, presence: true, uniqueness: true, if: :developer?
 
-    validates_each :first_name, :last_name, :email, :company, :website do |record, attr, value|
-        record.errors.add(attr, "must not contain \< or \>") if value.scan(/[<>]/).size > 0 
+    validates_each :first_name, :last_name, :email, :password, :company, :website do |record, attr, value|
+        record.errors.add(attr, "must not contain \< or \>") if value && value.match(/[<>]/)
     end
 
     def developer?

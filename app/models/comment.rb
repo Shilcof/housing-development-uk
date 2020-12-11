@@ -7,7 +7,7 @@ class Comment < ActiveRecord::Base
     validates :body, presence: true
 
     validates_each :body do |record, attr, value|
-        record.errors.add(attr, "must not contain \< or \>") if value.scan(/[<>]/).size > 0 
+        record.errors.add(attr, "must not contain \< or \>") if value && value.match(/[<>]/)
     end
 
     def ago_in_words
