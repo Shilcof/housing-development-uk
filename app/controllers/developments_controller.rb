@@ -24,7 +24,7 @@ class DevelopmentsController < ApplicationController
     redirect_if_not_developer
     development = current_user.developments.build(params)
     if current_user.save
-      redirect "/users/#{current_user.slug}"
+      redirect "/developers/#{current_user.slug}"
     else
       flash[:message] = development.errors.full_messages.join(". ") + "."
       redirect "/developments/new"
@@ -70,7 +70,7 @@ class DevelopmentsController < ApplicationController
     @developer = @development.developer
     redirect_if_wrong_developer(@developer)
     @development.destroy
-    redirect "/users/#{ current_user.slug }"
+    redirect "/developers/#{ current_user.slug }"
   end
 
   private

@@ -4,7 +4,7 @@
     <title>Housing Devlopment UK</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
-  <body>
+  <body class="pb-5">
 
     <header>
       <!-- Nav example from Bootstrap website -->
@@ -36,8 +36,10 @@
 
     <%= yield %>
 
-  <footer class="footer mt-auto fixed-bottom">
-    <hr />
+    <br>
+
+  <footer class="footer fixed-bottom bg-white mt-0/">
+    <hr class="mt-0">
     <div class="container text-center text-muted">
       <span> Housing Development UK <%= Time.now.year %></span>
     </div>
