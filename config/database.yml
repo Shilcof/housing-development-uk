@@ -1,14 +1,15 @@
 default: &default
   adapter: 'sqlite3'
-  database: 'db/development.sqlite'
+  encoding: 'unicode'
+  pool: 5
 
 development:
   <<: *default
+  database: 'db/development.sqlite'
 
 production:
+  <<: *default
   adapter: 'postgresql'
-  encoding: 'unicode'
-  pool: 5
 
 test:
   <<: *default
