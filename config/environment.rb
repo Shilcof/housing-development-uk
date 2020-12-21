@@ -4,6 +4,8 @@ require 'bundler/setup'
 Bundler.require(:default, ENV['SINATRA_ENV'])
 Dotenv.load
 
-ActiveRecord::Base.establish_connection(ENV['SINATRA_ENV'].to_sym)
+# ActiveRecord::Base.establish_connection(ENV['SINATRA_ENV'].to_sym)
+
+set :database_file, './database.yml'
 
 require_all 'app'
