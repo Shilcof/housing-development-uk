@@ -15,6 +15,15 @@ class DevelopmentsController < ApplicationController
     erb :"/developments/index.html"
   end
 
+  get "/developments/a-z" do
+    if @search = params[:search]
+      @developments = Development.where("title like ?", "%#{@search}%").includes(:developer)
+    else
+      @developments = Development.order("LOWER(title) DESC").includes(:developer)
+    end
+    erb :"/developments/index.html"
+  end
+
   get "/developments/new" do
     redirect_if_not_developer
     erb :"/developments/new.html"
